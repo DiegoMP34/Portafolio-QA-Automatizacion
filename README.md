@@ -2,8 +2,8 @@
 
 ## ✨ Descripción
 
-Este repositorio contiene una recopilación de mis proyectos y prácticas en el área de Calidad de Software (QA), abarcando desde pruebas manuales hasta pruebas automatizadas de APIs y aplicaciones web.  
-Está diseñado para demostrar mis habilidades en testing funcional, automatización, buenas prácticas de programación y control de versiones.
+Este repositorio contiene una recopilación de mi proyecto con OrangeHRM DEMO y prácticas en el área de Calidad de Software (QA), abarcando desde pruebas manuales hasta pruebas automatizadas de API y la aplicacion web.  
+Está diseñado para demostrar mis habilidades en testing funcional, automatización, buenas prácticas de programación y control de versiones con el software OrangeHRM DEMO.
 
 ## 📚 Contenido del Portafolio
 
@@ -15,7 +15,7 @@ Está diseñado para demostrar mis habilidades en testing funcional, automatizac
 | Programación en Java     | Fundamentos básicos e intermedios aplicados a QA.                  | Java SE 17                                     |
 | Control de Versiones     | Gestión de código fuente y proyectos QA.                           | Git, GitHub                                    |
 | Automatización de APIs   | Automatización de pruebas de servicios.                            | REST Assured                                   |
-| Automatización Web       | Automatización de pruebas funcionales en aplicaciones web.         | Selenium WebDriver, TestNG/JUnit              |
+| Automatización Web       | Automatización de pruebas funcionales en aplicaciones web.         | Selenium WebDriver, TestNG/JUnit               |
 
 ## 🚀 Proyectos incluidos
 
