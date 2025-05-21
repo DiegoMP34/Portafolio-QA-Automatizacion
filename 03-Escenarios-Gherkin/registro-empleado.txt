@@ -1,0 +1,44 @@
+Feature: Registro de nuevo empleado en el modulo PIM
+Como administrador,
+quiero registrar nuevo empleado,
+para mantener actualizado el personal
+
+Scenario: Registrar correctamente un empleado
+Given el administrador se encuentra en el modulo PIM
+And en la sección "agregar empleado"
+When ingresa nombre
+And ingresa segundo nombre
+And ingresa apellido
+And ingresa id empleado
+And habilita la opción crear detalles de logueo
+And ingresa el username
+And selecciona el estado del empleado
+And ingresa la contraseña
+And confirma la contraseña
+And clic en guardar
+Then se muestra un mensaje "successfully saved"
+And se redirige al perfil del empleado
+
+Scenario: Verificar si Id de empleado ya existe
+Given el administrador se encuentra en el modulo PIM
+And en la sección "agregar empleado"
+When ingresa nombre
+And ingresa segundo nombre
+And ingresa apellido
+And ingresa id empleado
+And clic en guardar
+Then se muestra un mensaje "Id empleado ya existe"
+
+Scenario: Registrar un empleado con campos vacios
+Given el administrador se encuentra en el modulo PIM
+And en la sección "agregar empleado"
+When clic en guardar
+Then se muestra un mensaje "required"
+
+Scenario: Verificar empleado se encuentra en la lista de empleados
+Given el administrador se encuentra en el modulo PIM
+And en la sección "lista de empleados"
+When ingresa el id del nuevo empleado
+And clic en buscar
+Then se muestra un mensaje "1 registro encontrado"
+And se muestra en una tabla los datos del empleado

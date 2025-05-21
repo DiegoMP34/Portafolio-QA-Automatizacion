@@ -1,0 +1,16 @@
+Feature: Editar datos de empleado en el modulo PIM
+Como administrador,
+quiero editar datos de un empleado,
+para mantener actualizado sus datos
+
+Scenario: Modificar correctamente los datos de un empleado
+Given el administrador se encuentra en el modulo PIM
+And en la sección "lista de empleados"
+When seleccionar un empleado de la lista de empleados
+And clic en el botón con icono de lapiz
+And modifica nacionalidad
+And modifica estado civil
+And modifica fecha de nacimiento
+And modifica genero
+And clic en guardar
+Then se muestra un mensaje "successfully updated"

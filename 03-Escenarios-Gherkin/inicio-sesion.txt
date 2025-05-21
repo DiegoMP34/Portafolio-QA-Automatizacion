@@ -1,0 +1,25 @@
+Feature: Ingreso a la aplicación web
+Como administrador,
+quiero iniciar sesión con mi usuario y contraseña,
+para acceder a las funcionalidades de la aplicación web.
+
+Scenario: Ingreso satisfactorio con credenciales correctas
+Given ingresa a la pagina de inicio de sesión
+When ingresa el usuario
+And ingresa la contraseña
+And clic en iniciar sesión
+Then se redirige a la pagina principal
+
+Scenario: Ingreso con credenciales incorrectas
+Given ingresa a la pagina de inicio de sesión
+When ingresa el usuario
+And ingresa la contraseña
+And clic en iniciar sesión
+Then se muestra un mensaje "Invalid credentials"
+
+Scenario: Ingreso con credenciales vacias
+Given ingresa a la pagina de inicio de sesión
+When ingresa el usuario
+And ingresa la contraseña
+And clic en iniciar sesión
+Then se muestra un mensaje "Required"

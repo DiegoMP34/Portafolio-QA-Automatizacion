@@ -1,0 +1,25 @@
+Feature: Buscar empleado en el modulo PIM
+Como administrador,
+quiero buscar un empleado,
+para encontrar rápidamente su informacion
+
+Scenario: Buscar correctamente por nombre
+Given el administrador se encuentra en el modulo PIM
+And en la sección "lista de empleados"
+When ingresa nombre
+And clic en buscar
+Then se muestra una tabla con la información coincidente
+
+Scenario: Buscar correctamente por id empleado
+Given el administrador se encuentra en el modulo PIM
+And en la sección "lista de empleados"
+When ingresa id empledo
+And clic en buscar
+Then se muestra una tabla con la información del empleado
+
+Scenario: Buscar con id empleado inexistente
+Given el administrador se encuentra en el modulo PIM
+And en la sección "lista de empleados"
+When ingresa id empleado inexistente
+And clic en buscar
+Then se muestra un mensaje "Registro no encontrado"

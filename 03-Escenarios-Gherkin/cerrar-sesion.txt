@@ -1,0 +1,15 @@
+Feature: Cerrar sesión en la aplicación web
+Como administrador,
+quiero cerrar sesión,
+para verificar se regresa al log-in
+
+Scenario: Cerrar correctamente la sesion
+Given el administrador esta logueado en la aplicacion web
+When se dirige al apartado de usuario
+And clic en log-out
+Then se redirige a la pagina log-in
+
+Scenario: No se permite retroceder tras log-out
+Given el administrador esta en log-in luego de cerrar sesion
+When clic en el boton regresar del navegador
+Then el usuario debe permanecer en la pagina log-in
