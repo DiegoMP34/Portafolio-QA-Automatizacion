@@ -1,0 +1,58 @@
+Feature: Visualizar historial de permisos de un empleado
+Como administrador
+Quiero consultar todas las solicitudes de permiso de un empleado
+Para dar seguimiento de ausencias por tipo, fecha y estado
+
+Background:
+Given el administrador se encuentra en el modulo Leave
+And en la sección "lista de licencias"
+
+  Scenario: Consultar historial sin aplicar filtros adicionales
+    Given que existe un empleado con solicitudes registradas
+    When el administrador ingresa el nombre del empleado en la sección "List Leave"
+    And deja los filtros por defecto
+    Then se deben mostrar todas las solicitudes pendientes del año actual de ese empleado
+
+  Scenario: Consultar historial por estado específico
+    Given que el empleado tiene solicitudes aprobadas registradas
+    When el administrador ingresa el nombre del empleado
+    And selecciona el estado "Aprobado"
+    Then se deben mostrar solo las solicitudes aprobadas del empleado
+
+  Scenario: Consultar historial por estado y rango de fechas
+    Given que el empleado tiene solicitudes rechazadas en un rango de fechas específico
+    When el administrador ingresa el nombre del empleado
+    And selecciona el estado "Rechazado"
+    And aplica un rango de fechas válido
+    Then se deben mostrar solo las solicitudes rechazadas en ese rango
+
+  Scenario: Consultar historial con subunidad seleccionada
+    Given que el empleado pertenece a la subunidad "Ventas"
+    When el administrador ingresa el nombre del empleado
+    And selecciona el estado "Todos"
+    And filtra por subunidad "Ventas"
+    Then se deben mostrar las solicitudes del empleado pertenecientes a esa subunidad
+
+  Scenario: Validar el historial de permisos buscados por sub unidad incorrecta
+    When busca por el empleado "diego paz verdu"
+    And por el tipo de subunidad incorrecta
+    Then ve un mensaje "records not found"
+
+  Scenario: Consultar historial con todos los filtros aplicados
+    Given que el empleado tiene solicitudes aprobadas con los filtros indicados
+    When el administrador ingresa el nombre del empleado
+    And selecciona el estado "Aprobado"
+    And aplica un rango de fechas válido
+    And selecciona una subunidad
+    And elige un tipo de permiso
+    Then se deben mostrar solo las solicitudes del empleado que cumplan con todos los filtros
+
+  Scenario: Consultar historial de un empleado sin solicitudes registradas
+    Given que el empleado no tiene ninguna solicitud en el sistema
+    When el administrador ingresa su nombre y selecciona el estado "Todos"
+    Then el sistema debe mostrar un mensaje indicando que no hay resultados
+
+  Scenario: Buscar con fechas en formato inválido
+    Given que el administrador desea consultar el historial de un empleado
+    When ingresa un rango de fechas con formato incorrecto
+    Then el sistema debe mostrar un mensaje de error o validación indicando el formato inválido

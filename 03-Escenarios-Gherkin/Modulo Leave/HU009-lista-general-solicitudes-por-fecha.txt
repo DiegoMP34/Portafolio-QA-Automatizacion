@@ -1,0 +1,48 @@
+Feature: Visualizar lista general de permisos de los empleados por fecha
+Como administrador
+Quiero ver una lista de permisos tomados y pendientes por fecha
+Para tener una vista general del personal ausente y planificar recursos
+
+Background:
+Given el administrador se encuentra en el modulo Leave
+And en la sección "lista de licencias"
+
+Scenario: Visualizar permisos pendientes del año actual por defecto correctamente
+  Given existe solicitudes registradas en el año actual
+  When accedo sin aplicar ningún filtro
+  Then debería ver la lista de permisos pendientes del año actual
+
+Scenario: Visualizar permisos dentro de un intervalo de fechas específico correctamente
+  Given existen permisos registrados en el año actual
+  When filtro los permisos entre dos fechas específicas
+  And selecciono todos los estados de permiso
+  Then debería ver solo los permisos que se encuentren dentro de ese rango de fecha
+
+Scenario: Visualizar permisos tomados y pendientes correctamente
+  Given existe al menos una solicitud y un permiso tomado
+  When selecciona un intervalo de fecha
+  And busca por el estado pendiente de aprobación y tomado
+  Then debería ver los permisos correspondientes a el filtro especificado
+
+Scenario: Filtrar permisos por tipo de permiso correctamente
+  Given existen permisos registrados en el año actual con el filtro especificado 
+  When selecciono un tipo de permiso específico y realizo la búsqueda
+  Then debería ver únicamente los permisos de ese tipo
+ 
+Scenario: Filtrar permisos por área (subunidad) correctamente
+  Given que soy un administrador en la sección "Leave List"
+  When selecciono una subunidad específica y realizo la búsqueda
+  Then debería ver los permisos correspondientes a empleados de esa subunidad
+
+Scenario: No hay permisos registrados en el intervalo de fechas seleccionado
+  When filtro por fechas donde no hay permisos
+  Then debería ver un mensaje indicando que no hay registros disponibles
+
+Scenario: Validar intervalo de fecha incorrectas al buscar permisos
+  When ingreso una fecha de inicio posterior a la fecha de fin
+  Then debería mostrarse un mensaje de error indicando que el rango es inválido
+
+Scenario: Buscar permisos con subunidad que no tiene registros
+  When selecciono una subunidad que no tiene solicitudes
+  Then debería mostrarse un mensaje indicando que no hay resultados
+

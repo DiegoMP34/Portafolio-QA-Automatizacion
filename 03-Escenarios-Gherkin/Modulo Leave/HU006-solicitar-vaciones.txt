@@ -1,0 +1,73 @@
+Feature: Registrar solicitud de permiso de empleado en el modulo Leave
+Como administrador,
+quiero registrar una solicitud de vacaciones a un empleado,
+para mantener actualizado las licencias
+
+Scenario: Crear correctamente una solicitud por vacaciones
+Given el administrador se encuentra en el modulo Leave
+And en la sección "asignar licencia"
+And el empleado tiene asignado días de licencia
+When ingresa nombre completo de empleado
+And selecciona tipo de licencia
+And selecciona la fecha de salida
+And selecciona la fecha de entrada
+And el balance de días de licencia es correcto
+And escribe un comentario 
+And clic en el botón solicitar
+Then se muestra una mensaje "Registrado exitosamente"
+
+Scenario: Seleccionar fechas con formato incorrecto
+Given el administrador se encuentra en el modulo Leave
+And en la sección "asignar licencia"
+And el empleado tiene asignado días de licencia
+When selecciona la fecha de salida incorrecta
+And selecciona la fecha de entrada incorrecta
+Then se muestra una mensaje "Should be a valid date in yyyy-dd-mm format"
+
+Scenario: Seleccionar fechas con formato incorrecto
+Given el administrador se encuentra en el modulo Leave
+And en la sección "asignar licencia"
+And el empleado tiene asignado días de licencia
+When selecciona la fecha de salida incorrecta
+And selecciona la fecha de entrada incorrecta
+Then se muestra una mensaje "To date should be after from date"
+
+Scenario: Validar que no se permite fechas pasadas
+Given el administrador se encuentra en el modulo Leave
+And en la sección "asignar licencia"
+And el empleado tiene asignado días de licencia
+When ingresa nombre completo de empleado
+And selecciona tipo de licencia
+And selecciona la fecha de salida
+And selecciona la fecha de entrada
+And el balance de días de licencia es correcto
+And escribe un comentario 
+And clic en el botón solicitar
+Then se muestra una mensaje "Seleccionar un fecha correcta"
+
+Scenario: Validar que no se sobrepongan las fechas con otra solicitud
+Given el administrador se encuentra en el modulo Leave
+And en la sección "asignar licencia"
+And el empleado tiene asignado días de licencia
+When ingresa nombre completo de empleado
+And selecciona tipo de licencia
+And selecciona la fecha de salida
+And selecciona la fecha de entrada
+And el balance de días de licencia es correcto
+And escribe un comentario 
+And clic en el botón solicitar
+Then se muestra una mensaje "Warning - Failed to submit"
+and se muestra un mensaje "Overlapping Leave Request(s) Found"
+
+Scenario: Validar que no se permite fechas pasadas
+Given el administrador se encuentra en el modulo Leave
+And en la sección "asignar licencia"
+And el empleado tiene asignado días de licencia
+When ingresa nombre completo de empleado
+And selecciona tipo de licencia
+And selecciona la fecha de salida
+And selecciona la fecha de entrada
+And el balance de días de licencia es correcto
+And escribe un comentario 
+And clic en el botón solicitar
+Then se muestra un modal con el mensaje "Confirm Leave Assignment"

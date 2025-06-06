@@ -1,0 +1,31 @@
+Feature: Aprobar o rechazar solicitudes de licencia a empleados
+Como administrador
+Quiero revisar y aprobar o rechazar solicitudes de permisos enviadas
+Para asegurar un control adecuado sobre las ausencias laborales
+
+Scenario: Validar que se puedan ver solicitudes pendientes
+Given el administrador se encuentra en el modulo Leave
+And en la sección "lista de licencias"
+And un empleado envió una solicitud
+When selecciona el estado de licencia "pediente de aprobar"
+And clic en buscar
+Then Se muestra un mensaje "X records found"
+
+Scenario: Aceptar una solicitud pendiente
+Given el administrador se encuentra en el modulo Leave
+And en la sección "lista de licencias"
+And un empleado envió una solicitud
+When selecciona el estado de licencia "pediente de aprobar"
+And clic en buscar
+And clic botón accept de la solicitud
+Then se muestra un mensaje "Successfully saved"
+
+Scenario: Rechazar una solicitud pendiente
+Given el administrador se encuentra en el modulo Leave
+And en la sección "lista de licencias"
+And un empleado envió una solicitud
+When selecciona el estado de licencia "pediente de aprobar"
+And clic en buscar
+And clic en el botón reject de la solicitud
+Then se muestra un mensaje "Successfully saved"
+
